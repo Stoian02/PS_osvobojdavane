@@ -10,7 +10,7 @@ using Welcome.Others;
 
 namespace Welcome.Model
 {
-    class User
+    public class User
     {
         public string _fakNum { get; set; }
         public string _name { set; get; }
@@ -23,7 +23,7 @@ namespace Welcome.Model
         public string _email { get; set; }
         public UserRolesEnum _role { set; get; }
 
-        public User(string fakNum, string name, string pass, string email,  UserRolesEnum role)
+        public User(string fakNum, string name, string pass, string email, UserRolesEnum role)
         {
             _fakNum = fakNum;
             _name = name;

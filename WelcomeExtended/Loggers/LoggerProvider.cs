@@ -13,12 +13,13 @@ namespace WelcomeExtended.Loggers
     {
         public ILogger CreateLogger(string categoryName)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+            return new HashLogger(categoryName);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }

@@ -8,7 +8,7 @@ using Welcome.ViewModel;
 
 namespace Welcome.View
 {
-    class UserView
+    public class UserView
     {
         private UserViewModel _viewModel;
 
@@ -30,9 +30,13 @@ namespace Welcome.View
             Console.WriteLine($"Fak number: {_viewModel.FakNumber}");
             Console.WriteLine($"User: {_viewModel.Name}");
             Console.WriteLine($"Pass: {_viewModel.Password}");
-            Console.WriteLine($"Role: {_viewModel.Role}");
             Console.WriteLine($"Email: {_viewModel.Email}");
+            Console.WriteLine($"Role: {_viewModel.Role}");
 
+        }
+        public void DisplayError()
+        {
+            throw new Exception("Error");
         }
 
     }

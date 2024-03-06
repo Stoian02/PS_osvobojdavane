@@ -20,7 +20,7 @@ namespace WelcomeExtended.Loggers
             _logMessages = new ConcurrentDictionary<int, string>();
         }
 
-        public IDisposable? BeginScope<TState>(TState state) where TState : notnull
+        public IDisposable BeginScope<TState>(TState state)
         {
             // throw new NotImplementedException();
             return null;
@@ -53,10 +53,10 @@ namespace WelcomeExtended.Loggers
 
             Console.WriteLine("-- LOGGER --");
             var messageToBeLogged = new StringBuilder();
-            messageToBeLogged.Append($"{logLevel}");
+            messageToBeLogged.Append($"[{logLevel}]");
             messageToBeLogged.AppendFormat(" [{0}]", _name);
             Console.WriteLine(messageToBeLogged);
-            Console.WriteLine($"{formatter(state, exception)}");
+            Console.WriteLine($" {formatter(state, exception)}");
             Console.WriteLine("-- LOGGER --");
             Console.ResetColor();
             _logMessages[eventId.Id] = message;

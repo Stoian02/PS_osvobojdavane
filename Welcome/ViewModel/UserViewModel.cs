@@ -11,7 +11,7 @@ using System.Security;
 
 namespace Welcome.ViewModel
 {
-    class UserViewModel
+    public class UserViewModel
     {
         public User _user;
 

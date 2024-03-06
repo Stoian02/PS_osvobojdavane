@@ -10,7 +10,7 @@ namespace WelcomeExtended.Others
 {
     internal class Delegates
     {
-        public static readonly ILogger logger = LoggerHelper.GetLogger("Delegates");
+        public static readonly ILogger logger = LoggerHelper.GetLogger("Heeelo!");
 
         public static void Log(string error)
         {
