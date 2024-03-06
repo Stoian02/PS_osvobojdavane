@@ -92,5 +92,18 @@ namespace WelcomeExtended.Loggers
             }
         }
 
+        // Method to delete a specific log by eventId
+        public void DeleteLogByEventId(int eventId)
+        {
+            if (_logMessages.TryRemove(eventId, out string message))
+            {
+                Console.WriteLine($"Log with EventId: {eventId} has been deleted.");
+            }
+            else
+            {
+                Console.WriteLine($"Log message with EventId: {eventId} not found.");
+            }
+        }
+
     }
 }
