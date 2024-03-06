@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WelcomeExtended.Loggers;
 
-namespace WelcomeExtended.Loggers
+namespace WelcomeExtended.Helpers
 {
-    internal static class LoggerHelper 
+    internal static class LoggerHelper
     {
         public static ILogger GetLogger(string categoryName)
         {
