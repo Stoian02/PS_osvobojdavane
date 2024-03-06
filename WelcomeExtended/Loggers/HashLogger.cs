@@ -78,6 +78,19 @@ namespace WelcomeExtended.Loggers
                 Console.WriteLine($"EventId: {logEntry.Key}, Message: {logEntry.Value}");
             }
         }
+        // Save all stored log messages to file
+        public void SaveAllLogs()
+        {
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "WriteLines.txt")))
+            {
+                foreach (var logEntry in _logMessages)
+                {
+                    outputFile.WriteLine($"EventId: {logEntry.Key}, Message: {logEntry.Value}");
+                }
+            }
+        }
 
         // Method to print a specific log by eventId
         public void PrintLogByEventId(int eventId)

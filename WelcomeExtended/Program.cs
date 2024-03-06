@@ -22,9 +22,11 @@ namespace WelcomeExtended
             logger.Log(LogLevel.Error, new EventId(3), "Test error", new Exception("Something went wrong"), (state, exception) => state.ToString());
 
             var hashLogger = logger as HashLogger;
-            hashLogger.DeleteLogByEventId(1);
             if (hashLogger != null)
             {
+                hashLogger.SaveAllLogs();
+                hashLogger.DeleteLogByEventId(1);
+
                 // Print a specific log message by its eventId
                 Console.WriteLine("Printing a specific log message by eventId:");
                 hashLogger.PrintLogByEventId(2);
