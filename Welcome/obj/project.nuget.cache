@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "66gMpIz0mFuDAXBwiapfvVpel0Z8WlpgrlmnijiKzES+XhsuAf8UUd/G+mhLki85kgQEjBYrkBK5HZI9W+RLbw==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\TU-Sofia\\6th-semestar\\PS_osvobojdavane\\Welcome\\Welcome.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
