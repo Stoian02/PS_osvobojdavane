@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,18 @@ namespace WelcomeExtended.Data
         {
             _users = new List<User>();
             _nextId = 0;
+        }
+
+        public User? GetUser(string username, string password)
+        {
+            foreach (var user in _users)
+            {
+                if (user._name == username && user._password == password)
+                {
+                    return user;
+                }
+            }
+            return null;
         }
 
         public void AddUser(User user)
