@@ -43,7 +43,7 @@ namespace WelcomeExtended
             try
             {
                 // Example 2
-                var user = new User("112233", "John Smith", "",
+                var user = new User(1, "112233", "John Smith", "",
                     "smith.j@email.com", UserRolesEnum.STUDENT);
 
                 var viewModel = new UserViewModel(user);
