@@ -34,7 +34,20 @@ namespace WelcomeExtended.Loggers
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
+            if (!IsEnabled(logLevel))
+            {
+                return;
+            }
+
             var message = formatter(state, exception);
+            // Store the message with the eventId as the key
+            _logMessages[eventId.Id] = message; 
+            // Here we actually print the log message
+            PrintLog(logLevel, message);
+        }
+
+        private void PrintLog(LogLevel logLevel, string message)
+        {
             switch (logLevel)
             {
                 case LogLevel.Critical:
@@ -52,14 +65,18 @@ namespace WelcomeExtended.Loggers
             }
 
             Console.WriteLine("-- LOGGER --");
-            var messageToBeLogged = new StringBuilder();
-            messageToBeLogged.Append($"[{logLevel}]");
-            messageToBeLogged.AppendFormat(" [{0}]", _name);
-            Console.WriteLine(messageToBeLogged);
-            Console.WriteLine($" {formatter(state, exception)}");
+            Console.WriteLine($"[{logLevel}] [{_name}] {message}");
             Console.WriteLine("-- LOGGER --");
             Console.ResetColor();
-            _logMessages[eventId.Id] = message;
+        }
+
+        // Print all stored log messages
+        public void PrintAllLogs()
+        {
+            foreach (var logEntry in _logMessages)
+            {
+                Console.WriteLine($"EventId: {logEntry.Key}, Message: {logEntry.Value}");
+            }
         }
 
     }
