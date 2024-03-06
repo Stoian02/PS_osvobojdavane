@@ -79,5 +79,18 @@ namespace WelcomeExtended.Loggers
             }
         }
 
+        // Method to print a specific log by eventId
+        public void PrintLogByEventId(int eventId)
+        {
+            if (_logMessages.TryGetValue(eventId, out string message))
+            {
+                Console.WriteLine($"EventId: {eventId}, Message: {message}");
+            }
+            else
+            {
+                Console.WriteLine($"Log message with EventId: {eventId} not found.");
+            }
+        }
+
     }
 }
