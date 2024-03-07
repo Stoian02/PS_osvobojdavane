@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Welcome.Model;
+using Welcome.Others;
 
 namespace WelcomeExtended.Data
 {
@@ -29,6 +31,20 @@ namespace WelcomeExtended.Data
                 }
             }
             return null;
+        }
+        // SetActive ??
+
+        public void AssignUserRole(string username, UserRolesEnum role)
+        {
+            var user = _users.FirstOrDefault(x => x._name == username);
+            if (user != null)
+            {
+                user._role = role;
+            }
+            else
+            {
+                throw new InvalidOperationException($"User with name '{username}' not found.");
+            }
         }
 
         public void AddUser(User user)

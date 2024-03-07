@@ -54,6 +54,9 @@ namespace WelcomeExtended
 
                 // Throw error here
                 view.DisplayError();
+
+                // Example UserData
+
             }
             catch (Exception e)
             {
