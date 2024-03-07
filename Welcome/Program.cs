@@ -14,7 +14,7 @@ namespace Welcome
             Console.WriteLine("Hello World!");
             Console.WriteLine();
 
-            User user = new User("111111011", "Stoyo", "parola", "email@test.com", UserRolesEnum.STUDENT);
+            User user = new User(15, "111111011", "Stoyo", "parola", "email@test.com", UserRolesEnum.STUDENT);
 
             UserViewModel userViewModel = new UserViewModel(user);
 

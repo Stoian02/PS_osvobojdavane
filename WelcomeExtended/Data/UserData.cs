@@ -25,7 +25,7 @@ namespace WelcomeExtended.Data
         {
             foreach (var user in _users)
             {
-                if (user._name == username && user._password == password)
+                if (user._name == username && user.VerifyPassword(password))
                 {
                     return user;
                 }
@@ -60,7 +60,7 @@ namespace WelcomeExtended.Data
         {
             foreach (var user in _users)
             {
-                if (user._name == name && user._password == password)
+                if (user._name == name && user.VerifyPassword(password))
                 {
                     return true;
                 }

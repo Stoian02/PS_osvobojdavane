@@ -24,6 +24,14 @@ namespace Welcome.Model
         public string _email { get; set; }
         public UserRolesEnum _role { set; get; }
 
+        public DateTime? Expires { get; set; }
+
+        public void SetActive(DateTime validDate)
+        {
+            Expires = validDate;
+        }
+
+        public User(){}
         public User(int id, string fakNum, string name, string pass, string email, UserRolesEnum role)
         {
             _id = id;

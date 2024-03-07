@@ -5,6 +5,8 @@ using Welcome.Others;
 using static WelcomeExtended.Others.Delegates;
 using Microsoft.Extensions.Logging;
 using WelcomeExtended.Loggers;
+using WelcomeExtended.Data;
+using WelcomeExtended.Helpers;
 
 namespace WelcomeExtended
 {
@@ -42,9 +44,13 @@ namespace WelcomeExtended
 
             try
             {
-                // Example 2
-                var user = new User(1, "112233", "John Smith", "",
-                    "smith.j@email.com", UserRolesEnum.STUDENT);
+                Console.WriteLine("Example 2");
+                var user = new User
+                {
+                    _name = "John Smith",
+                    _password = "",
+                    _role = UserRolesEnum.STUDENT
+                };
 
                 var viewModel = new UserViewModel(user);
 
@@ -53,9 +59,61 @@ namespace WelcomeExtended
                 view.DisplayAll();
 
                 // Throw error here
-                view.DisplayError();
+                // view.DisplayError();
+                Console.WriteLine("Example 2 END --------------------");
 
-                // Example UserData
+                Console.WriteLine("Example UserData");
+                var userData = new UserData();
+
+                User studentUser = new User
+                {
+                    _name = "student",
+                    _password = "123",
+                    _role = UserRolesEnum.STUDENT
+                };
+                userData.AddUser(studentUser);
+
+                User studentUser2 = new User
+                {
+                    _name = "Student2",
+                    _password = "123",
+                    _role = UserRolesEnum.STUDENT
+                };
+                userData.AddUser(studentUser2);
+
+                User teacher = new User
+                {
+                    _name = "Teacher",
+                    _password = "1234",
+                    _role = UserRolesEnum.PROFFESOR
+                };
+                userData.AddUser(teacher);
+
+                User admin = new User
+                {
+                    _name = "Admin",
+                    _password = "12345",
+                    _role = UserRolesEnum.ADMIN
+                };
+                userData.AddUser(admin);
+
+                string username, password;
+
+                Console.WriteLine("Enter a username: ");
+                username = Console.ReadLine();
+
+                Console.WriteLine("Enter a password: ");
+                password = Console.ReadLine();
+
+                if (UserHelper.ValidateCredentials(userData, username, password))
+                {
+                    Console.WriteLine(UserHelper.ToString(UserHelper.GetUser(userData, username, password)));
+                }
+                else
+                {
+                    throw new Exception("The user was not found!");
+                }
+
 
             }
             catch (Exception e)
