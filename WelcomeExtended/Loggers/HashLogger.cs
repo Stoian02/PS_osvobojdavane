@@ -11,13 +11,13 @@ namespace WelcomeExtended.Loggers
 {
     internal class HashLogger : ILogger
     {
-        private readonly ConcurrentDictionary<int, string> _logMessages;
+        private readonly ConcurrentDictionary<int, (LogLevel logLevel, string message)> _logMessages;
         private readonly string _name;
 
         public HashLogger(string name)
         {
             _name = name;
-            _logMessages = new ConcurrentDictionary<int, string>();
+            _logMessages = new ConcurrentDictionary<int, (LogLevel logLevel, string message)>();
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -41,7 +41,7 @@ namespace WelcomeExtended.Loggers
 
             var message = formatter(state, exception);
             // Store the message with the eventId as the key
-            _logMessages[eventId.Id] = message; 
+            _logMessages[eventId.Id] = (logLevel, message);
             // Here we actually print the log message
             PrintLog(logLevel, message);
         }
@@ -81,23 +81,46 @@ namespace WelcomeExtended.Loggers
         // Save all stored log messages to file
         public void SaveAllLogs()
         {
-            string docPath =
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "WriteLines.txt")))
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string successFilePath = Path.Combine(docPath, "SuccessfulLogins.txt");
+            string failedFilePath = Path.Combine(docPath, "FailedLogins.txt");
+
+            try
             {
-                foreach (var logEntry in _logMessages)
+                // Using separate files for successful and failed logins for clarity
+                using (StreamWriter successFile = new StreamWriter(successFilePath, true),
+                       failedFile = new StreamWriter(failedFilePath, true))
                 {
-                    outputFile.WriteLine($"EventId: {logEntry.Key}, Message: {logEntry.Value}");
+                    foreach (var logEntry in _logMessages)
+                    {
+                        var (logLevel, message) = logEntry.Value;
+                        string formattedMessage = $"Timestamp: {DateTime.UtcNow}, EventId: {logEntry.Key}, Message: {message}";
+
+                        // Determine where to log based on the log level
+                        if (logLevel == LogLevel.Information) // Assuming successful login attempts are logged at Information level
+                        {
+                            successFile.WriteLine(formattedMessage);
+                        }
+                        else if (logLevel == LogLevel.Warning || logLevel == LogLevel.Error) // Assuming failed attempts are logged at Warning or Error level
+                        {
+                            failedFile.WriteLine(formattedMessage);
+                        }
+                    }
                 }
+                Console.WriteLine($"Successfully saved logs to {successFilePath} and {failedFilePath}.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving logs: {ex.Message}");
             }
         }
 
         // Method to print a specific log by eventId
         public void PrintLogByEventId(int eventId)
         {
-            if (_logMessages.TryGetValue(eventId, out string message))
+            if (_logMessages.TryGetValue(eventId, out (LogLevel logLevel, string message) logEntry))
             {
-                Console.WriteLine($"EventId: {eventId}, Message: {message}");
+                Console.WriteLine($"EventId: {eventId}, LogLevel: {logEntry.logLevel}, Message: {logEntry.message}");
             }
             else
             {
@@ -108,15 +131,14 @@ namespace WelcomeExtended.Loggers
         // Method to delete a specific log by eventId
         public void DeleteLogByEventId(int eventId)
         {
-            if (_logMessages.TryRemove(eventId, out string message))
+            if (_logMessages.TryRemove(eventId, out (LogLevel logLevel, string message) logEntry))
             {
-                Console.WriteLine($"Log with EventId: {eventId} has been deleted.");
+                Console.WriteLine($"Log with EventId: {eventId}, LogLevel: {logEntry.logLevel}, Message: {logEntry.message} has been deleted.");
             }
             else
             {
                 Console.WriteLine($"Log message with EventId: {eventId} not found.");
             }
         }
-
     }
 }

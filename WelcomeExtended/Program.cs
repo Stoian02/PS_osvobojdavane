@@ -14,16 +14,18 @@ namespace WelcomeExtended
     {
         static void Main(string[] args)
         {
+            // Test if the logger works -------------------
             // Configure logger
             LoggerProvider loggerProvider = new LoggerProvider();
             ILogger logger = loggerProvider.CreateLogger("TestLogger");
+            var hashLogger = logger as HashLogger;
 
+            /*
             // Log some messages
             logger.Log(LogLevel.Information, new EventId(1), "Test message 1", null, (state, exception) => state.ToString());
             logger.Log(LogLevel.Information, new EventId(2), "Test message 2", null, (state, exception) => state.ToString());
             logger.Log(LogLevel.Error, new EventId(3), "Test error", new Exception("Something went wrong"), (state, exception) => state.ToString());
 
-            var hashLogger = logger as HashLogger;
             if (hashLogger != null)
             {
                 hashLogger.SaveAllLogs();
@@ -41,7 +43,8 @@ namespace WelcomeExtended
             {
                 Console.WriteLine("Logger is not of type HashLogger. Cannot print log by eventId.");
             }
-
+            // ------------------- END -------------------
+            */
             try
             {
                 Console.WriteLine("Example 2");
@@ -108,9 +111,13 @@ namespace WelcomeExtended
                 if (UserHelper.ValidateCredentials(userData, username, password))
                 {
                     Console.WriteLine(UserHelper.ToString(UserHelper.GetUser(userData, username, password)));
+                    logger.Log(LogLevel.Information, new EventId(1000), $"User {username} logged in successfully.", null, (state, exception) => state.ToString());
                 }
                 else
                 {
+                    // Log failed login
+                    logger.Log(LogLevel.Warning, new EventId(1001), $"Failed login attempt for user {username}.", null, (state, exception) => state.ToString());
+
                     throw new Exception("The user was not found!");
                 }
 
@@ -123,9 +130,13 @@ namespace WelcomeExtended
             }
             finally
             {
+                if (hashLogger != null)
+                {
+                    // Save all logs to files after the try-catch block
+                    hashLogger.SaveAllLogs();
+                }
                 Console.WriteLine("Executed in any case!");
             }
-
         }
     }
 }
