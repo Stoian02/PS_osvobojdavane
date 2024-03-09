@@ -12,7 +12,7 @@ namespace Welcome.Model
 {
     public class User
     {
-        public int _id { get; set; }
+        public virtual int _id { get; set; }
         public string _fakNum { get; set; }
         public string _name { set; get; }
         private string _hashedPassword = string.Empty; 
@@ -24,11 +24,11 @@ namespace Welcome.Model
         public string _email { get; set; }
         public UserRolesEnum _role { set; get; }
 
-        public DateTime? Expires { get; set; }
+        public DateTime? _expires { get; set; }
 
         public void SetActive(DateTime validDate)
         {
-            Expires = validDate;
+            _expires = validDate;
         }
 
         public User(){}
