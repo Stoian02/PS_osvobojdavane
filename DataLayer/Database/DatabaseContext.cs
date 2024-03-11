@@ -29,33 +29,40 @@ namespace DataLayer.Database
             var user = new DatabaseUser
             {
                 _id = 1,
-                _name = "John Doe",
-                _password = "2468",
-                _role = UserRolesEnum.ADMIN,
-                _expires = DateTime.Now.AddYears(10)
+                _fakNum = "000",
+                Name = "John Doe",
+                Password = "2468",
+                Email = "",
+                Role = UserRolesEnum.ADMIN,
+                Expires = DateTime.Now.AddYears(10)
             };
+            user.HashPassword(); 
             var user2 = new DatabaseUser
             {
                 _id = 2,
-                _name = "Doey",
-                _password = "1122",
-                _role = UserRolesEnum.INSPECTOR,
-                _expires = DateTime.Now.AddYears(1)
+                _fakNum = "112",
+                Name = "Doey",
+                Password = "1122",
+                Email = "",
+                Role = UserRolesEnum.INSPECTOR,
+                Expires = DateTime.Now.AddYears(1)
             };
+            user2.HashPassword();
             var user3 = new DatabaseUser
             {
                 _id = 3,
-                _name = "Kris",
-                _password = "parola",
-                _role = UserRolesEnum.STUDENT,
-                _expires = DateTime.Now.AddYears(1)
+                _fakNum = "221",
+                Name = "Kris",
+                Password = "parola",
+                Email = "",
+                Role = UserRolesEnum.STUDENT,
+                Expires = DateTime.Now.AddYears(1)
             };
+            user3.HashPassword();
 
             modelBuilder.Entity<DatabaseUser>().HasData(user);
             modelBuilder.Entity<DatabaseUser>().HasData(user2);
             modelBuilder.Entity<DatabaseUser>().HasData(user3);
-
-
         }
     }
 }

@@ -10,7 +10,7 @@ using Welcome.Others;
 
 namespace WelcomeExtended.Data
 {
-    internal class UserData
+    class UserData
     {
         private List<User> _users;
         private int _nextId;
@@ -25,7 +25,7 @@ namespace WelcomeExtended.Data
         {
             foreach (var user in _users)
             {
-                if (user._name == username && user.VerifyPassword(password))
+                if (user.Name == username && user.VerifyPassword(password))
                 {
                     return user;
                 }
@@ -36,10 +36,10 @@ namespace WelcomeExtended.Data
 
         public void AssignUserRole(string username, UserRolesEnum role)
         {
-            var user = _users.FirstOrDefault(x => x._name == username);
+            var user = _users.FirstOrDefault(x => x.Name == username);
             if (user != null)
             {
-                user._role = role;
+                user.Role = role;
             }
             else
             {
@@ -60,7 +60,7 @@ namespace WelcomeExtended.Data
         {
             foreach (var user in _users)
             {
-                if (user._name == name && user.VerifyPassword(password))
+                if (user.Name == name && user.VerifyPassword(password))
                 {
                     return true;
                 }
@@ -69,13 +69,13 @@ namespace WelcomeExtended.Data
         }
         public bool ValidateUserLambda(string name, string password)
         {
-            return _users.Where(x => x._name == name && x._password == password)
+            return _users.Where(x => x.Name == name && x.Password == password)
                          .FirstOrDefault() != null ? true : false;
         }
         public bool ValidateUserLinq(string name, string password)
         {
             var ret = from user in _users
-                      where user._name == name && user._password == password
+                      where user.Name == name && user.Password == password
                       select user._id;
             return ret != null ? true : false;
         }

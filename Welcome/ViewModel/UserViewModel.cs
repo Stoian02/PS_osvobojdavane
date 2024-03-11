@@ -27,25 +27,25 @@ namespace Welcome.ViewModel
         }
         public string Name 
         {
-            get { return _user._name; }
-            set { _user._name = value; }
+            get { return _user.Name; }
+            set { _user.Name = value; }
         }
         public string Password
         {
-            get { return _user._password; }
-            set { _user._password = value; }
+            get { return _user.Password; }
+            set { _user.Password = value; }
         }
 
         public string Email
         {
-            get { return _user._email; }
-            set { _user._email = value; }
+            get { return _user.Email; }
+            set { _user.Email = value; }
         }
 
         public UserRolesEnum Role
         {
-            get { return _user._role; }
-            set { _user._role = value; }
+            get { return _user.Role; }
+            set { _user.Role = value; }
         }
     }
 }

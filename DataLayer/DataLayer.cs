@@ -2,7 +2,9 @@
 using DataLayer.Model;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 using Welcome.Others;
+using WelcomeExtended.Data;
 
 namespace DataLayer
 {
@@ -13,13 +15,14 @@ namespace DataLayer
             using (var context = new DatabaseContext())
             {
                 context.Database.EnsureCreated();
-                context.Add<DatabaseUser>(new DatabaseUser()
+                context.Add(new DatabaseUser()
                 {
-                    _name = "user",
-                    _password = "pass",
-                    _email = "user@email.com",
-                    _expires = DateTime.Now,
-                    _role = UserRolesEnum.STUDENT,
+                    _fakNum = "010",
+                    Name = "user",
+                    Password = BCrypt.Net.BCrypt.HashPassword("pass"),
+                    Email = "user@email.com",
+                    Expires = DateTime.Now,
+                    Role = UserRolesEnum.STUDENT,
                 });
                 context.SaveChanges();
                 var users = context.Users.ToList();
@@ -27,26 +30,26 @@ namespace DataLayer
             }
 
             string username, password;
+            Console.WriteLine("Enter a username: ");
+            username = Console.ReadLine();
 
-            // Checking for a valid user
+            Console.WriteLine("Enter a password: ");
+            password = Console.ReadLine();
+
             using (var context = new DatabaseContext())
             {
-                Console.WriteLine("Enter a username: ");
-                username = Console.ReadLine();
+                // This filters at the database level, not in memory
+                var user = context.Users
+                    .FirstOrDefault(u => u.Name == username);
 
-                Console.WriteLine("Enter a password: ");
-                password = Console.ReadLine();
-
-                // Use LINQ to check if the user exists and the password matches
-                bool isValidUser = context.Users.Any(u => u._name == username && u._password == password);
-
-                if (isValidUser)
+                // Verify the password in-memory
+                if (user != null && user.VerifyPassword(password))
                 {
-                    Console.WriteLine("Валиден потребител"); // "Valid user"
+                    Console.WriteLine("Valid user");
                 }
                 else
                 {
-                    Console.WriteLine("Невалидни данни"); // "Invalid data"
+                    Console.WriteLine("Invalid data");
                 }
             }
         }

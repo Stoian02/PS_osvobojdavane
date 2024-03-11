@@ -14,37 +14,67 @@ namespace Welcome.Model
     {
         public virtual int _id { get; set; }
         public string _fakNum { get; set; }
-        public string _name { set; get; }
-        private string _hashedPassword = string.Empty; 
-        public string _password 
+        private string _name;
+        private string _hashedPassword = string.Empty;
+        private string _email;
+        private UserRolesEnum _role;
+        private DateTime? _expires;
+
+        public string Name
         {
-            set { _hashedPassword = BCrypt.Net.BCrypt.HashPassword(value); }
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string Password
+        {
+            set { _hashedPassword = value; }
             get { return _hashedPassword; }
         }
-        public string _email { get; set; }
-        public UserRolesEnum _role { set; get; }
 
-        public DateTime? _expires { get; set; }
-
-        public void SetActive(DateTime validDate)
+        public string Email
         {
-            _expires = validDate;
+            get { return _email; }
+            set { _email = value; }
+        }
+
+        public UserRolesEnum Role
+        {
+            get { return _role; }
+            set { _role = value; }
+        }
+
+        public DateTime? Expires
+        {
+            get { return _expires; }
+            set { _expires = value; }
         }
 
         public User(){}
-        public User(int id, string fakNum, string name, string pass, string email, UserRolesEnum role)
+        public User(int id, string fakNum, string name, string password, string email, UserRolesEnum role)
         {
             _id = id;
             _fakNum = fakNum;
             _name = name;
-            _password = pass;
+            Password = password;
             _email = email;
             _role = role;
         }
-
+        public void HashPassword()
+        {
+            if (!string.IsNullOrEmpty(_hashedPassword))
+            {
+                _hashedPassword = BCrypt.Net.BCrypt.HashPassword(Password);
+            }
+        }
         public bool VerifyPassword(string password)
         {
             return BCrypt.Net.BCrypt.Verify(password, _hashedPassword);
+        }
+
+        public void SetActive(DateTime validDate)
+        {
+            _expires = validDate;
         }
     }
 }

@@ -50,9 +50,9 @@ namespace WelcomeExtended
                 Console.WriteLine("Example 2");
                 var user = new User
                 {
-                    _name = "John Smith",
-                    _password = "",
-                    _role = UserRolesEnum.STUDENT
+                    Name = "John Smith",
+                    Password = "",
+                    Role = UserRolesEnum.STUDENT
                 };
 
                 var viewModel = new UserViewModel(user);
@@ -70,33 +70,33 @@ namespace WelcomeExtended
 
                 User studentUser = new User
                 {
-                    _name = "student",
-                    _password = "123",
-                    _role = UserRolesEnum.STUDENT
+                    Name = "student",
+                    Password = "123",
+                    Role = UserRolesEnum.STUDENT
                 };
                 userData.AddUser(studentUser);
 
                 User studentUser2 = new User
                 {
-                    _name = "Student2",
-                    _password = "123",
-                    _role = UserRolesEnum.STUDENT
+                    Name = "Student2",
+                    Password = "123",
+                    Role = UserRolesEnum.STUDENT
                 };
                 userData.AddUser(studentUser2);
 
                 User teacher = new User
                 {
-                    _name = "Teacher",
-                    _password = "1234",
-                    _role = UserRolesEnum.PROFFESOR
+                    Name = "Teacher",
+                    Password = "1234",
+                    Role = UserRolesEnum.PROFFESOR
                 };
                 userData.AddUser(teacher);
 
                 User admin = new User
                 {
-                    _name = "Admin",
-                    _password = "12345",
-                    _role = UserRolesEnum.ADMIN
+                    Name = "Admin",
+                    Password = "12345",
+                    Role = UserRolesEnum.ADMIN
                 };
                 userData.AddUser(admin);
 
