@@ -9,7 +9,7 @@ using Welcome.Model;
 
 namespace DataLayer.Model
 {
-    internal class DatabaseUser : User
+    public class DatabaseUser : User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

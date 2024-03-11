@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using BCrypt.Net;
-
 using Welcome.Others;
 
 namespace Welcome.Model

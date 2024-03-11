@@ -1,5 +1,5 @@
 ﻿UI
-1.0.0.0
+
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI\App.xaml
-1-1819699537
+2-2080510187
 
-6-2080627860
+5852056744
 220-822525561
-Windows\MainWindow.xaml;
+Components\StudentsList.xaml;Windows\MainWindow.xaml;
 
-True
+False
 
