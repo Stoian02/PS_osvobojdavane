@@ -11,10 +11,10 @@ namespace Welcome.Model
     public class User
     {
         public virtual int _id { get; set; }
-        public string _fakNum { get; set; }
+        public string _fakNum { get; set; } = "";
         private string _name;
         private string _hashedPassword = string.Empty;
-        private string _email;
+        private string _email = "";
         private UserRolesEnum _role;
         private DateTime? _expires;
 

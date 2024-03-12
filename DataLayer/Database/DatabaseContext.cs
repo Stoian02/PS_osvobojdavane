@@ -1,17 +1,21 @@
 ﻿using DataLayer.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Welcome.Others;
+using DataLayer.Others;
+
 
 namespace DataLayer.Database
 {
     public class DatabaseContext : DbContext
     {
         public DbSet<DatabaseUser> Users { get; set; }
+        public DbSet<LogEntry> LogEntries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

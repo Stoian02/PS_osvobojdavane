@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Welcome\Welcome.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extras\" />
-  </ItemGroup>
-
 </Project>

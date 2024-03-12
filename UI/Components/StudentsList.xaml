@@ -3,14 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UI.Components"
+             xmlns:local="clr-namespace:UI.Components"  
+             xmlns:local2="clr-namespace:UI.Extras"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local2:MaskPassword x:Key="MaskPassword"/>
+    </UserControl.Resources>
     <Grid>
         <DataGrid Name="students" ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="#" IsReadOnly="True" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Names" IsReadOnly="True" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Password" IsReadOnly="True" Binding="{Binding Password, Converter={StaticResource MaskPassword}}" />
                 <DataGridTextColumn Header="Roles" IsReadOnly="True" Binding="{Binding Role}"/>
                 <DataGridTextColumn Header="Expires In" Binding="{Binding Expires}"/>
 
