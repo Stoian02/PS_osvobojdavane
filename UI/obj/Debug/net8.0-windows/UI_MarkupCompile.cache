@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI\App.xaml
-2-2080510187
+3192830124
 
-6256888073
+7-46730574
 220-822525561
-Components\StudentsList.xaml;Windows\MainWindow.xaml;
+Components\LoggerList.xaml;Components\StudentsList.xaml;Windows\MainWindow.xaml;
 
 False
 

@@ -13,23 +13,23 @@ namespace DataLayer
         static DatabaseLogger logger = new DatabaseLogger();
         static void Main(string[] args)
         {
-            using (var context = new DatabaseContext())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-                context.Add(new DatabaseUser()
-                {
-                    _fakNum = "010",
-                    Name = "user",
-                    Password = BCrypt.Net.BCrypt.HashPassword("pass"),
-                    Email = "user@email.com",
-                    Expires = DateTime.Now,
-                    Role = UserRolesEnum.STUDENT,
-                });
-                context.SaveChanges();
-                var users = context.Users.ToList();
-                Console.ReadKey();
-            }
+            //using (var context = new DatabaseContext())
+            //{
+            //    // context.Database.EnsureDeleted();
+            //    context.Database.EnsureCreated();
+            //    context.Add(new DatabaseUser()
+            //    {
+            //        _fakNum = "010",
+            //        Name = "user",
+            //        Password = BCrypt.Net.BCrypt.HashPassword("pass"),
+            //        Email = "user@email.com",
+            //        Expires = DateTime.Now,
+            //        Role = UserRolesEnum.STUDENT,
+            //    });
+            //    context.SaveChanges();
+            //    var users = context.Users.ToList();
+            //    Console.ReadKey();
+            //}
 
             string username, password;
             Console.WriteLine("Enter a username: ");
@@ -126,7 +126,7 @@ namespace DataLayer
             var user = new DatabaseUser
             {
                 Name = username,
-                Password = password
+                Password = BCrypt.Net.BCrypt.HashPassword(password)
             };
 
             using (var context = new DatabaseContext())
