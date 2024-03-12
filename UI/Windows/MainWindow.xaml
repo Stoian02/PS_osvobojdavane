@@ -5,17 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.Components"
         mc:Ignorable="d"
-        Title="List of all students" Height="Auto" Width="1000"
+        Title="List of logs" Height="Auto" Width="1000"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <local:StudentsList x:Name="studentsList" Padding="2" Grid.Row="0"/>
         <local:LoggerList x:Name="loggerList" Padding="2" Grid.Row="1"/>
-
     </Grid>
 </Window>

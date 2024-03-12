@@ -17,7 +17,7 @@
                 <DataGridTextColumn Header="Names" IsReadOnly="True" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Password" IsReadOnly="True" Binding="{Binding Password, Converter={StaticResource MaskPassword}}" />
                 <DataGridTextColumn Header="Roles" IsReadOnly="True" Binding="{Binding Role}"/>
-                <DataGridTextColumn Header="Expires In" Binding="{Binding Expires}"/>
+                <DataGridTextColumn Header="Expires In" IsReadOnly="True" Binding="{Binding Expires}"/>
 
             </DataGrid.Columns>
         </DataGrid>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Others;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,5 +15,8 @@ namespace DataLayer.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public override int _id { get; set; }
+
+        // Hold related log entries
+        public virtual ICollection<LogEntry> LogEntries { get; set; }
     }
 }

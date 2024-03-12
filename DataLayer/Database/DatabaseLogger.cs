@@ -20,6 +20,22 @@ namespace DataLayer.Database
             Log("Error", message);
         }
 
+        public void Log_with_userId(string level, string message, int id)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var logEntry = new LogEntry
+                {
+                    Level = level,
+                    Message = message,
+                    Timestamp = DateTime.Now,
+                    UserId = id
+                };
+                context.LogEntries.Add(logEntry);
+                context.SaveChanges();
+            }
+        }
+
         public void Log(string level, string message)
         {
             using (var context = new DatabaseContext())
@@ -28,7 +44,7 @@ namespace DataLayer.Database
                 {
                     Level = level,
                     Message = message,
-                    Timestamp = DateTime.UtcNow
+                    Timestamp = DateTime.Now,
                 };
                 context.LogEntries.Add(logEntry);
                 context.SaveChanges();

@@ -5,10 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBox Name="userIdInput" Width="100" Margin="5" ToolTip="Enter User ID"/>
+            <Button Content="Filter" Click="OnFilterClicked" Margin="5"/>
+            <Button Content="Clear Filter" Click="OnClearFilterClicked" Margin="5"/>
+        </StackPanel>
         <DataGrid Name="logs" ItemsSource="{Binding}" AutoGenerateColumns="False"
-                  MouseDoubleClick="OnDoubleClick">
+                    MouseDoubleClick="OnDoubleClick" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Timestamp" IsReadOnly="True"
                             Binding="{Binding Timestamp}" />

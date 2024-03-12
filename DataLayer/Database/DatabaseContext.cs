@@ -19,7 +19,6 @@ namespace DataLayer.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Welcome;Trusted_Connection=True;");
             string solutionFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string databaseFile = "Welcome.db";
             string databasePath = Path.Combine(solutionFolder, databaseFile);
@@ -29,7 +28,13 @@ namespace DataLayer.Database
         {
             modelBuilder.Entity<DatabaseUser>().Property(u => u._id).ValueGeneratedOnAdd();
 
-            // Create a user
+            // Makes the relationships between the tables (one => many)
+            modelBuilder.Entity<LogEntry>()
+                .HasOne(le => le.User) // LogEntry has one User
+                .WithMany(u => u.LogEntries) // User has many LogEntries
+                .HasForeignKey(le => le.UserId); // The foreign key is UserId in LogEntry
+
+            // Create users
             var user = new DatabaseUser
             {
                 _id = 1,

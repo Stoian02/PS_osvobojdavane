@@ -13,9 +13,10 @@ namespace DataLayer
         static DatabaseLogger logger = new DatabaseLogger();
         static void Main(string[] args)
         {
+            
             //using (var context = new DatabaseContext())
             //{
-            //    // context.Database.EnsureDeleted();
+            //    //context.Database.EnsureDeleted();
             //    context.Database.EnsureCreated();
             //    context.Add(new DatabaseUser()
             //    {
@@ -29,7 +30,7 @@ namespace DataLayer
             //    context.SaveChanges();
             //    var users = context.Users.ToList();
             //    Console.ReadKey();
-            //}
+            //} 
 
             string username, password;
             Console.WriteLine("Enter a username: ");
@@ -40,20 +41,24 @@ namespace DataLayer
 
             using (var context = new DatabaseContext())
             {
-                // This filters at the database level, not in memory
+                // This filters at the database level, lambda syntax
                 var user = context.Users
                     .FirstOrDefault(u => u.Name == username);
+                
+                // var s = from u in context.Users
+                //         where u.Name == username
+                //         select u;
+                // Linq ^^
 
                 // Verify the password in-memory
                 if (user != null && user.VerifyPassword(password))
                 {
                     Console.WriteLine("Valid user");
-                    logger.LogInformation("The username and password are valid!");
+                    logger.Log_with_userId("Information", "The username and password are valid!", user._id);
                 }
                 else
                 {
                     Console.WriteLine("Invalid data");
-                    logger.LogError("Invalid data!");
                 }
             }
 
@@ -61,7 +66,7 @@ namespace DataLayer
         }
         static void DisplayMenu()
         {
-            logger.Log("Information", "Displaying menu options.");
+            //logger.Log("Information", "Displaying menu options.");
 
             Console.WriteLine("Select an option:");
             Console.WriteLine("1. Get all users");
@@ -83,7 +88,7 @@ namespace DataLayer
                     DeleteUser();
                     break;
                 case "4":
-                    logger.Log("Information", "Exiting the application.");
+                    //logger.Log("Information", "Exiting the application.");
                     return;
                 default:
                     Console.WriteLine("Invalid option, please try again.");
@@ -95,7 +100,7 @@ namespace DataLayer
         }
         static void GetAllUsers()
         {
-            logger.Log("Information", "Fetching all users.");
+            //logger.Log("Information", "Fetching all users.");
             using (var context = new DatabaseContext())
             {
                 var users = context.Users.ToList();
@@ -135,20 +140,21 @@ namespace DataLayer
                 context.SaveChanges();
                 Console.WriteLine("User added successfully.");
             }
-            logger.Log("Information", $"Adding new user: {username}.");
+            //logger.Log("Information", $"Adding new user: {username}.");
         }
 
         static void DeleteUser()
         {
             Console.WriteLine("Enter user name to delete:");
             string username = Console.ReadLine();
-            logger.Log("Information", $"Attempting to delete user: {username}.");
 
             using (var context = new DatabaseContext())
             {
                 var user = context.Users.FirstOrDefault(u => u.Name == username);
+
                 if (user != null)
                 {
+                    logger.Log_with_userId("Information", $"Attempting to delete user: {username}.", user._id);
                     context.Users.Remove(user);
                     context.SaveChanges();
                     Console.WriteLine("User deleted successfully.");
