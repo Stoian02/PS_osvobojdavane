@@ -12,11 +12,12 @@
     <Window.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding ConvertTextCommand}"/>
     </Window.InputBindings>
-    <StackPanel Height="336">
+    <StackPanel Height="376">
+        <Button Content="Switch Conversion Mode" Click="SwitchViewModelButton" Margin="5"/>
         <Label Foreground="Blue" Margin="5,5,5,0">Text To Convert</Label>
         <TextBox Text="{Binding SomeText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
         <Label Foreground="Blue" Margin="5,5,5,0">History</Label>
-        <ListBox Height="200" Margin="5" ItemsSource="Binding History"/>
-        <Button Margin="5">Convert</Button>
+        <ListBox Height="200" Margin="5" ItemsSource="{Binding History}" />
+        <Button Margin="5" Command="{Binding ConvertTextCommand}">Convert</Button>
     </StackPanel>
 </Window>

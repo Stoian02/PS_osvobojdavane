@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinimalMVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,28 @@ namespace MinimalMVVM.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Presenter _presenter;
+        private ToLower _toLower;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _presenter = new Presenter();
+            _toLower = new ToLower();
+            DataContext = _presenter;
+        }
+
+        private void SwitchViewModelButton(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Presenter)
+            {
+                DataContext = _toLower;
+            }
+            else
+            {
+                DataContext = _presenter;
+            }
         }
     }
 }
