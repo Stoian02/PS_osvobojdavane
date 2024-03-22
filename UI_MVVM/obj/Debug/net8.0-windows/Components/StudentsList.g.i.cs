@@ -62,7 +62,7 @@ namespace UI_MVVM.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/UI_MVVM;component/components/studentslist.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/UI_MVVM;V1.0.0.0;component/components/studentslist.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Components\StudentsList.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

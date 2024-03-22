@@ -1,5 +1,4 @@
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM.csproj.AssemblyReference.cache
-D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Components\LoggerList.g.cs
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\App.g.cs
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM_MarkupCompile.cache
@@ -63,11 +62,8 @@ D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\bin\Debug\net8.0-wind
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\bin\Debug\net8.0-windows\DataLayer.pdb
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\bin\Debug\net8.0-windows\WelcomeExtended.pdb
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\bin\Debug\net8.0-windows\Welcome.pdb
-D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Components\StudentsList.g.cs
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
-D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Components\LoggerList.baml
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\MainWindow.baml
-D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Components\StudentsList.baml
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM.g.resources
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM.AssemblyInfoInputs.cache
@@ -80,3 +76,10 @@ D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-wind
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM.pdb
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\UI_MVVM.genruntimeconfig.cache
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\ref\UI_MVVM.dll
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\StudentsList.g.cs
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\LoggerList.g.cs
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\StudentsList.baml
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\LoggerList.baml
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\App.baml
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\StudentView1.g.cs
+D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\obj\Debug\net8.0-windows\Views\StudentView1.baml

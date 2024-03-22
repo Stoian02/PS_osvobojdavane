@@ -4,16 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_MVVM"
-        xmlns:components="clr-namespace:UI_MVVM.Components"
+        xmlns:views="clr-namespace:UI_MVVM.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
             <TabItem Header="Students">
-                <components:StudentsList />
+                <views:StudentsList DataContext="{Binding StudentsViewModel, Source={StaticResource Locator}}" />
             </TabItem>
             <TabItem Header="Logs">
-                <components:LoggerList />
+                <views:LoggerList DataContext="{Binding LoggerViewModel, Source={StaticResource Locator}}" />
+            </TabItem>
+            <TabItem Header="StudentView1">
+                <views:StudentView1 DataContext="{Binding StudentsViewModel, Source={StaticResource Locator}}" />
             </TabItem>
         </TabControl>
     </Grid>

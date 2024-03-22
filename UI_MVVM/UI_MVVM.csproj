@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Welcome\Welcome.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\" />
+  </ItemGroup>
+
 </Project>

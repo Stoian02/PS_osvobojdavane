@@ -7,21 +7,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Components\LoggerList.xaml.cs">
+    <Compile Update="Views\LoggerList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\StudentsList.xaml.cs">
+    <Compile Update="Views\StudentsList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\StudentView1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Components\LoggerList.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Components\StudentsList.xaml">
+    <Page Update="Views\LoggerList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StudentsList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StudentView1.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

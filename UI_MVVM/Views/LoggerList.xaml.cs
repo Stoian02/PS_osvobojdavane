@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.ViewModels;
 
-namespace UI_MVVM.Components
+namespace UI_MVVM.Views
 {
     /// <summary>
     /// Interaction logic for LoggerList.xaml

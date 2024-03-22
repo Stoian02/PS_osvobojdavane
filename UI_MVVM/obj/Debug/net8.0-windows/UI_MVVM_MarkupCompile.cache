@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Projects\TU-Sofia\6th-semestar\PS_osvobojdavane\UI_MVVM\App.xaml
-3367867223
+4-1644156778
 
-11651305128
+132108924901
 220-1358918148
-Components\LoggerList.xaml;Components\StudentsList.xaml;Views\MainWindow.xaml;
+Views\LoggerList.xaml;Views\MainWindow.xaml;Views\StudentsList.xaml;Views\StudentView1.xaml;
 
 False
 
