@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.ViewModels;
+using UI_MVVM.ViewModels;
 
 namespace UI_MVVM.Views
 {
@@ -44,5 +45,10 @@ namespace UI_MVVM.Views
         private void FilterButton_Click(object sender, RoutedEventArgs e) => ((LoggerViewModel)DataContext).FilterCommand.Execute(null);
         private void ClearFilterButton_Click(object sender, RoutedEventArgs e) => ((LoggerViewModel)DataContext).ClearFilterCommand.Execute(null);
 
+        private void AddLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addLog = DataContext as LoggerViewModel;
+            addLog?.AddLogCommand.Execute(null);
+        }
     }
 }

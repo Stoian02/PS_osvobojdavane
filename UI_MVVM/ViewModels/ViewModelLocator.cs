@@ -12,6 +12,7 @@ namespace UI_MVVM.ViewModels
         private LoggerViewModel _loggerViewModel;
         private StudentsViewModel _studentsViewModel;
 
+
         public LoggerViewModel LoggerViewModel
         {
             get

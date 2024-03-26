@@ -4,23 +4,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI_MVVM.Views"
+             xmlns:local2="clr-namespace:UI_MVVM.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <TextBox Width="100" Margin="5" Text="{Binding UserIdFilter}" ToolTip="Enter User ID"/>
             <Button Content="Filter" Command="{Binding FilterCommand}" Margin="5" />
             <Button Content="Clear Filter" Command="{Binding ClearFilterCommand}" Margin="5" />
         </StackPanel>
+        
         <DataGrid x:Name="logsDataGrid" ItemsSource="{Binding Logs}" AutoGenerateColumns="False"
               MouseDoubleClick="logsDataGrid_MouseDoubleClick" Grid.Row="1" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}" />
             </DataGrid.Columns>
         </DataGrid>
+        
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Log Message" FontSize="12" Margin="5"/>
+            <TextBox Margin="5" Text="{Binding Message}"/>
+            <TextBlock Text="Log Level" FontSize="12" Margin="5"/>
+            <TextBox Margin="5" Text="{Binding Level}"/>
+            <TextBlock Text="UserId" FontSize="12" Margin="5"/>
+            <TextBox Margin="5" Text="{Binding UserId}" />
+            <Button Content="Add Log" Click="AddLogButton_Click" Margin="5"/>
+        </StackPanel>
+        
+
     </Grid>
 </UserControl>

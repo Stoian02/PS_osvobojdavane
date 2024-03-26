@@ -10,16 +10,31 @@ namespace UI.ViewModels
 {
     public class LoggerViewModel : ObservableObject
     {
-        private ObservableCollection<LogEntry> _logs;
+        public ObservableCollection<LogEntry> _logs;
         private string _userIdFilter;
+
+        public string? Level { get; set; }
+        public string? Message { get; set; }
+        public int UserId { get; set; }
 
         public ICommand FilterCommand { get; }
         public ICommand ClearFilterCommand { get; }
+        public ICommand AddLogCommand { get; private set; }
 
         public ObservableCollection<LogEntry> Logs
         {
             get => _logs;
             set => SetProperty(ref _logs, value);
+        }
+
+        public void AddLog(LogEntry log)
+        {
+            using (var context = new DatabaseContext())
+            {
+                context.LogEntries.Add(log);
+                context.SaveChanges();
+            }
+            Logs.Add(log);
         }
 
         public string UserIdFilter
@@ -40,6 +55,7 @@ namespace UI.ViewModels
         {
             FilterCommand = new DelegateCommand(ExecuteFilter);
             ClearFilterCommand = new DelegateCommand(() => LoadAllLogs());
+            AddLogCommand = new DelegateCommand(AddLogManually);
             LoadAllLogs();
         }
         private void ExecuteFilter()
@@ -86,6 +102,25 @@ namespace UI.ViewModels
         {
             UserIdFilter = string.Empty;
             LoadAllLogs();
+        }
+
+        public void AddLogManually()
+        {
+            var logEntry = new LogEntry
+            {
+                Timestamp = DateTime.UtcNow,
+                Level = Level,
+                Message = Message,
+                UserId = UserId
+            };
+
+            using (var context = new DatabaseContext())
+            {
+                context.LogEntries.Add(logEntry);
+                context.SaveChanges();
+            }
+
+            _logs.Add(logEntry);
         }
     }
 }
