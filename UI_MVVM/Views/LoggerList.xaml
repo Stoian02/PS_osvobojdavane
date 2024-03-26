@@ -30,12 +30,18 @@
         
         <StackPanel Grid.Row="2">
             <TextBlock Text="Log Message" FontSize="12" Margin="5"/>
-            <TextBox Margin="5" Text="{Binding Message}"/>
+            <TextBox Margin="5" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Log Level" FontSize="12" Margin="5"/>
-            <TextBox Margin="5" Text="{Binding Level}"/>
+            <ComboBox Margin="5" 
+                      SelectedValue="{Binding Level, UpdateSourceTrigger=PropertyChanged}" 
+                      SelectedValuePath="Content">
+                <ComboBoxItem Content="Info"/>
+                <ComboBoxItem Content="Warning"/>
+                <ComboBoxItem Content="Error"/>
+            </ComboBox>
             <TextBlock Text="UserId" FontSize="12" Margin="5"/>
-            <TextBox Margin="5" Text="{Binding UserId}" />
-            <Button Content="Add Log" Click="AddLogButton_Click" Margin="5"/>
+            <TextBox Margin="5" Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Add Log" Command="{Binding AddLogCommand}"  Margin="5"/>
         </StackPanel>
         
 

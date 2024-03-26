@@ -13,9 +13,25 @@ namespace UI.ViewModels
         public ObservableCollection<LogEntry> _logs;
         private string _userIdFilter;
 
-        public string? Level { get; set; }
-        public string? Message { get; set; }
-        public int UserId { get; set; }
+        private string? _level;
+        private string? _message;
+        private int _userId;
+
+        public string? Level 
+        { 
+            get => _level;
+            set => SetProperty(ref _level, value);
+        }
+        public string? Message 
+        {
+            get => _message;
+            set => SetProperty(ref _message, value);
+        }
+        public int UserId 
+        { 
+            get => _userId;
+            set => SetProperty(ref _userId, value);
+        }
 
         public ICommand FilterCommand { get; }
         public ICommand ClearFilterCommand { get; }
@@ -27,16 +43,17 @@ namespace UI.ViewModels
             set => SetProperty(ref _logs, value);
         }
 
-        public void AddLog(LogEntry log)
+        public LoggerViewModel()
         {
-            using (var context = new DatabaseContext())
-            {
-                context.LogEntries.Add(log);
-                context.SaveChanges();
-            }
-            Logs.Add(log);
-        }
+            _level = "Info";
+            _message = String.Empty;
+            _userId = 1;
 
+            FilterCommand = new DelegateCommand(ExecuteFilter);
+            ClearFilterCommand = new DelegateCommand(() => LoadAllLogs());
+            AddLogCommand = new DelegateCommand(AddLogManually);
+            LoadAllLogs();
+        }
         public string UserIdFilter
         {
             get => _userIdFilter;
@@ -51,35 +68,10 @@ namespace UI.ViewModels
             }
         }
 
-        public LoggerViewModel()
+        public void AddLog(LogEntry log)
         {
-            FilterCommand = new DelegateCommand(ExecuteFilter);
-            ClearFilterCommand = new DelegateCommand(() => LoadAllLogs());
-            AddLogCommand = new DelegateCommand(AddLogManually);
-            LoadAllLogs();
-        }
-        private void ExecuteFilter()
-        {
-            if (int.TryParse(UserIdFilter, out int userId))
-            {
-                using (var context = new DatabaseContext())
-                {
-                    var filteredLogs = context.LogEntries.Where(log => log.UserId == userId).ToList();
-                    Logs = new ObservableCollection<LogEntry>(filteredLogs);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid User ID.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void LoadAllLogs()
-        {
-            using (var context = new DatabaseContext())
-            {
-                Logs = new ObservableCollection<LogEntry>(context.LogEntries.ToList());
-            }
+            DatabaseService.Add(log);
+            Logs.Add(log);
         }
 
         private void FilterLogs()
@@ -103,6 +95,26 @@ namespace UI.ViewModels
             UserIdFilter = string.Empty;
             LoadAllLogs();
         }
+        private void ExecuteFilter()
+        {
+            if (int.TryParse(UserIdFilter, out int userId))
+            {
+                using (var context = new DatabaseContext())
+                {
+                    var filteredLogs = context.LogEntries.Where(log => log.UserId == userId).ToList();
+                    Logs = new ObservableCollection<LogEntry>(filteredLogs);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid User ID.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void LoadAllLogs()
+        {
+            Logs = new ObservableCollection<LogEntry>(DatabaseService.GetAllLogs());
+        }
 
         public void AddLogManually()
         {
@@ -116,11 +128,23 @@ namespace UI.ViewModels
 
             using (var context = new DatabaseContext())
             {
+                var userExists = context.Users.Any(u => u._id == UserId);
+                if (!userExists)
+                {
+                    // Show a message if the user ID is not found
+                    MessageBox.Show("Please enter a valid User ID.", "User Not Found", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 context.LogEntries.Add(logEntry);
                 context.SaveChanges();
             }
 
-            _logs.Add(logEntry);
+            Logs.Add(logEntry);
+
+            // Clear the input fields
+            Level = null;
+            Message = null;
+            UserId = 0;
         }
     }
 }

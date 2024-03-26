@@ -26,7 +26,6 @@ namespace UI_MVVM.Views
         public LoggerList()
         {
             InitializeComponent();
-            this.DataContext = new LoggerViewModel();
         }
 
         private void logsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -44,11 +43,5 @@ namespace UI_MVVM.Views
 
         private void FilterButton_Click(object sender, RoutedEventArgs e) => ((LoggerViewModel)DataContext).FilterCommand.Execute(null);
         private void ClearFilterButton_Click(object sender, RoutedEventArgs e) => ((LoggerViewModel)DataContext).ClearFilterCommand.Execute(null);
-
-        private void AddLogButton_Click(object sender, RoutedEventArgs e)
-        {
-            var addLog = DataContext as LoggerViewModel;
-            addLog?.AddLogCommand.Execute(null);
-        }
     }
 }
